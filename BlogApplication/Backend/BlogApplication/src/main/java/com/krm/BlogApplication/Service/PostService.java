@@ -15,6 +15,7 @@ public  interface PostService  {
     public Post savePost(Post post);
     public List<Post> getAllPost();
     public Optional<Post> getPostById(Long id);
+    public List<Post> searchByName(String name);
 
 
 }

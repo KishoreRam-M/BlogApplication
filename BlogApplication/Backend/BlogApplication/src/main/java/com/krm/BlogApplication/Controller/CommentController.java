@@ -1,9 +1,13 @@
 package com.krm.BlogApplication.Controller;
 
+import com.krm.BlogApplication.Model.Comment;
+import com.krm.BlogApplication.Repo.CommentRepo;
 import com.krm.BlogApplication.Service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/")
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private CommentRepo commentRepo;
 
     @PostMapping ("/comment/create")
     public ResponseEntity<?> createComment(@RequestParam Long id, @RequestParam String postby, @RequestParam String content) {
@@ -21,4 +27,9 @@ public class CommentController {
         }
     }
 
+@GetMapping("/comment/{id}")
+    public ResponseEntity<?>getCommentByPostId(@PathVariable Long id)
+    {
+        return ResponseEntity.ok(commentRepo.findByPostId(id));
+    }
 }

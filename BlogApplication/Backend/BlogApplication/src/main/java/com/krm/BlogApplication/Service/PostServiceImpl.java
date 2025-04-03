@@ -30,4 +30,8 @@ public class PostServiceImpl implements PostService {
     public Optional<Post> getPostById(Long id) {
         return repo.findById(id);
     }
+    public List<Post> searchByName(String name)
+    {
+        return repo.findAllByNameContaining(name);
+    }
 }

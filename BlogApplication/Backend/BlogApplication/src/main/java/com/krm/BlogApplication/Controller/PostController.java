@@ -68,5 +68,15 @@ public class PostController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating like count");
         }
     }
+    @GetMapping("/search/{name}")
+    public ResponseEntity<?>searchByName(@PathVariable String name)
+    {
+        try
+        {
+            return ResponseEntity.status(HttpStatus.OK).body(postService.searchByName(name));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 }
 
